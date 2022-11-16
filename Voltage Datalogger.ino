@@ -1,5 +1,4 @@
-#define HOUR (60 * 60 * 1000L)
-#define tensec (1 * 1000L)
+
 unsigned long oldtime = 0L ;
 static unsigned long lasttime ;
 const float scalefactor = .004975; // my scalefactor: yours will be different
