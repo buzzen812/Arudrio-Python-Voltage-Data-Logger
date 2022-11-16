@@ -1,4 +1,4 @@
-
+const byte ainputs[] = {A0, A1, A2, A3, A4, A5};
 unsigned long oldtime = 0L ;
 static unsigned long lasttime ;
 const float scalefactor = .004975; // my scalefactor: yours will be different
@@ -8,7 +8,6 @@ void setup() {
   pinMode (LED_BUILTIN, OUTPUT);
   Serial.begin(9600); // initialize serial communication at 9600 bits per second:
 }
-
 
 void loop (){
     if ( (millis()-oldtime) > 1000) {
@@ -20,33 +19,14 @@ void loop (){
 }
 
 void collect() {
-  // read the input on analog pin 0:
-  int sensorValue0 = analogRead(A0);
-  int sensorValue1 = analogRead(A1);
-  int sensorValue2 = analogRead(A2);
-  int sensorValue3 = analogRead(A3);
-  int sensorValue4 = analogRead(A4);
-  int sensorValue5 = analogRead(A5);
-  
-  
-  // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
-  float voltage0 = sensorValue0 * scalefactor;
-  float voltage1 = sensorValue1 * scalefactor;
-  float voltage2 = sensorValue2 * scalefactor;
-  float voltage3 = sensorValue3 * scalefactor;
-  float voltage4 = sensorValue4 * scalefactor;
-  float voltage5 = sensorValue5 * scalefactor;
-  // print out the value you read:
-  Serial.print(voltage0,3);
-   Serial.print(",");  
-  Serial.print(voltage1,3);
-    Serial.print(",");
-  Serial.print(voltage2,3);
-    Serial.print(",");
-  Serial.print(voltage3,3);
-    Serial.print(",");
-  Serial.print(voltage4,3);
-    Serial.print(",");
-  Serial.println(voltage5,3);
 
+   for (int pin = 0; pin < 5; pin++)
+    {
+      int dummy = analogRead(ainputs[pin]);  //read values twice as advised
+      int sensorvalue = analogRead(ainputs[pin]);
+      float floatvoltage = sensorvalue * scalefactor;
+      Serial.print(flotvoltage,3);  //do whatever you want with the value
+      Serial.print(",");
+    }
+  Serial.println("")
 }
