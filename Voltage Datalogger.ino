@@ -3,7 +3,6 @@ unsigned long oldtime = 0L ;
 static unsigned long lasttime ;
 const float scalefactor = .004975; // my scalefactor: yours will be different
 
-
 void setup() {
   pinMode (LED_BUILTIN, OUTPUT);
   Serial.begin(9600); // initialize serial communication at 9600 bits per second:
@@ -12,14 +11,11 @@ void setup() {
 void loop (){
     if ( (millis()-oldtime) > 1000) {
        oldtime = millis();
-
-      collect();
-
+       collect();
     }
 }
 
 void collect() {
-
    for (int pin = 0; pin < 5; pin++)
     {
       int dummy = analogRead(ainputs[pin]);  //read values twice as advised
