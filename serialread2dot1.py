@@ -1,9 +1,11 @@
-import time
-import schedule
-import serial
 import csv
+import time
 from datetime import datetime
 
+import schedule
+import serial
+
+int readtime = 15 #reads serial port every 15 seconds
 ser = serial.Serial('COM3', 9600, timeout=1)
 
 print("Initalizing   Please Wait......................")
@@ -22,7 +24,7 @@ def collectdata():
         w = csv.writer(f,delimiter=",")
         w.writerow(data)
  
-schedule.every(15).seconds.do(collectdata)
+schedule.every(readtime).seconds.do(collectdata)
 
 while 1:
     schedule.run_pending()

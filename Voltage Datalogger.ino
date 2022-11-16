@@ -1,3 +1,6 @@
+//Monitors all anolog inputs every x seconds 
+
+int sec = 1000 // time in millseconds
 const byte ainputs[] = {A0, A1, A2, A3, A4, A5};
 unsigned long oldtime = 0L ;
 static unsigned long lasttime ;
@@ -9,7 +12,7 @@ void setup() {
 }
 
 void loop (){
-    if ( (millis()-oldtime) > 1000) {
+    if ( (millis()-oldtime) > sec) {
        oldtime = millis();
        collect();
     }
